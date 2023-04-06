@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class ArticleController {
     @Autowired
@@ -22,11 +23,11 @@ public class ArticleController {
     public Article createArticle(@RequestBody Article article) {return articleRepository.save(article);}
 
     @PutMapping("/articles/{id}")
-    public Article updateUser(@PathVariable Long id, @RequestBody Article article){
+    public Article updateArticle(@PathVariable Long id, @RequestBody Article article){
         Article articleToUpdate = articleRepository.findById(id).get();
-        articleToUpdate.setTitle(articleToUpdate.getTitle());
-        articleToUpdate.setImage(articleToUpdate.getImage());
-        articleToUpdate.setContent(articleToUpdate.getContent());
+        articleToUpdate.setTitle(article.getTitle());
+        articleToUpdate.setImage(article.getImage());
+        articleToUpdate.setContent(article.getContent());
         return articleRepository.save(articleToUpdate);
     }
 
