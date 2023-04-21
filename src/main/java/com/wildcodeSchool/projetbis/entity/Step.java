@@ -1,7 +1,5 @@
 package com.wildcodeSchool.projetbis.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.annotation.Generated;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,13 +12,7 @@ public class Step {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name= "recipe_id")
-    @JsonIgnore
-    private Recipe recipe;
-
-    public Step() {
-    }
+    public Step() { }
 
     public Long getId() {
         return Id;
@@ -54,11 +46,4 @@ public class Step {
         this.description = description;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
 }

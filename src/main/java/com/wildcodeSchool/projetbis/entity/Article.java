@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,13 +20,13 @@ public class Article {
     private Date createdAt;
     @UpdateTimestamp
     private Date updatedAt;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name= "user_id")
     @JsonIgnore
     private User user;
 
     @ManyToMany(mappedBy = "favorite_articles")
-    private List<User> favorite_articles = new ArrayList<>();
+    private List<User> favorite_articles;
 
     public Article() {
     }

@@ -1,7 +1,6 @@
 package com.wildcodeSchool.projetbis.entity;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -15,8 +14,7 @@ public class Category {
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Recipe> recipes;
 
-    public Category() {
-    }
+    public Category() { }
 
     public Long getId() {
         return id;
@@ -42,11 +40,7 @@ public class Category {
         this.logo = logo;
     }
 
-    public List<Recipe> getRecipes() {
-        return recipes;
-    }
+    public List<Recipe> getRecipes() { return recipes; }
 
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
-    }
+    public void setRecipes(List<Recipe> recipes) { this.recipes = recipes; }
 }

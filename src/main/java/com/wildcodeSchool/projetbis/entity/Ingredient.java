@@ -1,23 +1,23 @@
 package com.wildcodeSchool.projetbis.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
-
     private String name;
     private String logo;
 
-    @OneToMany(mappedBy = "ingredient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<RecipeIngredient> recipeIngredients = new ArrayList<>();
-    public Ingredient() {
-    }
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<RecipeIngredient> recipes;
+
+    public Ingredient() { }
 
     public Long getId() {
         return id;
@@ -43,11 +43,11 @@ public class Ingredient {
         this.logo = logo;
     }
 
-    public List<RecipeIngredient> getRecipeIngredients() {
-        return recipeIngredients;
+    public List<RecipeIngredient> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
-        this.recipeIngredients = recipeIngredients;
+    public void setRecipes(List<RecipeIngredient> recipes) {
+        this.recipes = recipes;
     }
 }

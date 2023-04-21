@@ -4,7 +4,6 @@ import com.wildcodeSchool.projetbis.entity.Article;
 import com.wildcodeSchool.projetbis.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @CrossOrigin("http://localhost:4200")

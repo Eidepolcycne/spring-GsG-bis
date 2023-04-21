@@ -1,6 +1,5 @@
 package com.wildcodeSchool.projetbis.controller;
 
-import com.wildcodeSchool.projetbis.entity.Recipe;
 import com.wildcodeSchool.projetbis.entity.Step;
 import com.wildcodeSchool.projetbis.repository.RecipeRepository;
 import com.wildcodeSchool.projetbis.repository.StepRepository;
@@ -22,12 +21,6 @@ public class StepController {
 
     @GetMapping("/steps/{id}")
     public Step getStep(@PathVariable Long id){return stepRepository.findById(id).get();}
-
-    @PostMapping("/recipes/{id}/steps")
-    public Step createStep(@PathVariable Long id, @RequestBody Step step) {
-        Recipe recipeOfTheNewStep = recipeRepository.findById(id).get();
-        step.setRecipe(recipeOfTheNewStep);
-        return stepRepository.save(step);}
 
     @PutMapping("/steps/{id}")
     public Step updateStep(@PathVariable Long id, @RequestBody Step step){

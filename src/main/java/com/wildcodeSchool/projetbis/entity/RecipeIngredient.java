@@ -1,32 +1,30 @@
 package com.wildcodeSchool.projetbis.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
 public class RecipeIngredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
     private String quantity;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="recipe_id")
+    @JsonIgnore
     private Recipe recipe;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="ingredient_id")
     private Ingredient ingredient;
 
-    public RecipeIngredient() {
-    }
+    public RecipeIngredient() { }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
     public String getQuantity() {
         return quantity;
@@ -36,13 +34,9 @@ public class RecipeIngredient {
         this.quantity = quantity;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
-    }
+    public Recipe getRecipe() { return recipe; }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
+    public void setRecipe(Recipe recipe) { this.recipe = recipe; }
 
     public Ingredient getIngredient() {
         return ingredient;

@@ -1,8 +1,6 @@
 package com.wildcodeSchool.projetbis.entity;
 
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,19 +17,19 @@ public class User {
     @JoinTable(name= "favorite_articles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "article_id"))
-    private List<Article> favorite_articles = new ArrayList<>();
+    private List<Article> favorite_articles;
 
     @ManyToMany
     @JoinTable(name= "favorite_recipes",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
-    private List<Recipe> favorite_recipes = new ArrayList<>();
+    private List<Recipe> favorite_recipes;
 
     @ManyToMany
     @JoinTable(name= "Like_recipes",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
-    private List<Recipe> like_recipes = new ArrayList<>();
+    private List<Recipe> like_recipes;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Article> articles;

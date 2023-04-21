@@ -2,7 +2,6 @@ package com.wildcodeSchool.projetbis.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,29 +17,32 @@ public class Recipe {
     private Long cookingTime;
     private Long  totalTime;
     private boolean validated;
+
     @ManyToMany(mappedBy = "favorite_recipes")
     private List<User> favoriteUsers = new ArrayList<>();
 
     @ManyToMany(mappedBy = "like_recipes")
     private List<User> likeUsers = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name= "category_id")
     @JsonIgnore
     private Category category;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name= "user_id")
-    @JsonIgnore
     private User user;
 
-    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="recipe_id")
+//    pour ne pas qu'hybernate crée automatiquement la table de jointure recipe_steps
     private List<Step> steps;
 
-    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private List<RecipeIngredient> recipeIngredients = new ArrayList<>();
-    public Recipe() {
-    }
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="recipe_id")
+    private List<RecipeIngredient> ingredients;
+
+    public Recipe() { }
 
     public Long getId() {
         return id;
@@ -146,11 +148,11 @@ public class Recipe {
         this.steps = steps;
     }
 
-    public List<RecipeIngredient> getRecipeIngredients() {
-        return recipeIngredients;
+    public List<RecipeIngredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
-        this.recipeIngredients = recipeIngredients;
+    public void setIngredients(List<RecipeIngredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
