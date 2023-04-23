@@ -31,7 +31,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private List<Recipe> like_recipes;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Article> articles;
 
 
