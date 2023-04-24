@@ -13,11 +13,13 @@ public class User {
     private String password;
     private String role;
 
+
+
     @ManyToMany
     @JoinTable(name= "favorite_articles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "article_id"))
-    private List<Article> favorite_articles;
+    private List<Article> favoriteArticles;
 
     @ManyToMany
     @JoinTable(name= "favorite_recipes",
@@ -78,12 +80,12 @@ public class User {
         this.role = role;
     }
 
-    public List<Article> getFavorite_articles() {
-        return favorite_articles;
+    public List<Article> getFavoriteArticles() {
+        return favoriteArticles;
     }
 
-    public void setFavorite_articles(List<Article> favorite_articles) {
-        this.favorite_articles = favorite_articles;
+    public void setFavoriteArticles(List<Article> favoriteArticles) {
+        this.favoriteArticles = favoriteArticles;
     }
 
     public List<Recipe> getFavorite_recipes() {

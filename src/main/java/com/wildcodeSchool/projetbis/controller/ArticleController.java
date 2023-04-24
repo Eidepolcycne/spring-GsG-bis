@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin
 @RestController
 public class ArticleController {
     @Autowired
     ArticleRepository articleRepository;
+
 
     @GetMapping("/articles")
     public List<Article> getAll(){return(List<Article>) articleRepository.findAll();}
