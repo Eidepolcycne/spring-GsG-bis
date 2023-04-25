@@ -1,6 +1,7 @@
 package com.wildcodeSchool.projetbis.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -25,8 +26,11 @@ public class Article {
     @JsonIgnore
     private User user;
 
-    @ManyToMany(mappedBy = "favorite_articles")
-    private List<User> favorite_articles;
+
+
+    @ManyToMany(mappedBy = "favoriteArticles", cascade = CascadeType.PERSIST)
+    @JsonIgnoreProperties("favoriteArticles")
+    private List<User> users;
 
     public Article() {
     }
@@ -88,12 +92,11 @@ public class Article {
         this.user = user;
     }
 
-    public List<User> getFavorite_articles() {
-        return favorite_articles;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setFavorite_articles(List<User> favorite_articles) {
-        this.favorite_articles = favorite_articles;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
-
 }

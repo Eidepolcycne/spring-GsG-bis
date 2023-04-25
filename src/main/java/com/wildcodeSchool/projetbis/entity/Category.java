@@ -11,7 +11,7 @@ public class Category {
     private String name;
     private String logo;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Recipe> recipes;
 
     public Category() { }

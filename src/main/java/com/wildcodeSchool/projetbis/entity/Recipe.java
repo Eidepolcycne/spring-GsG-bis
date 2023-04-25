@@ -33,12 +33,12 @@ public class Recipe {
     @JoinColumn(name= "user_id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="recipe_id")
 //    pour ne pas qu'hybernate crée automatiquement la table de jointure recipe_steps
     private List<Step> steps;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="recipe_id")
     private List<RecipeIngredient> ingredients;
 

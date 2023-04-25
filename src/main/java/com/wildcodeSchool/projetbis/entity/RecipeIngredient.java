@@ -11,12 +11,12 @@ public class RecipeIngredient {
     private Long id;
     private String quantity;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="recipe_id")
     @JsonIgnore
     private Recipe recipe;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="ingredient_id")
     private Ingredient ingredient;
 
